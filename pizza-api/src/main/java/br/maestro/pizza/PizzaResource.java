@@ -15,18 +15,17 @@ public class PizzaResource {
 
     @Transactional
     public void init(@Observes StartupEvent ev) {
-        var pizza1 = new Pizza();
-        pizza1.description = "Bauru";
+        var pizza1 = new Pizza("Bauru");
         pizza1.persist();
 
-        var pizza2 = new Pizza();
-        pizza2.description = "Quatro queijos";
+        var pizza2 = new Pizza("Quatro queijos");
         pizza2.persist();
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Pizza> getAll(){
-        return Pizza.listAll();
+    public List<Pizza> getPizza(){
+        List<Pizza> result = Pizza.listAll();
+        return result;
     }
 }
