@@ -1,5 +1,6 @@
-package br.maestro.pizza;
+package br.maestro.pizza.rs;
 
+import br.maestro.pizza.model.Pizza;
 import io.quarkus.runtime.StartupEvent;
 import jakarta.enterprise.event.Observes;
 import jakarta.transaction.Transactional;
