@@ -1,0 +1,53 @@
+package br.maestro.pizza.model;
+
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.transaction.Transactional;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Entity
+public class Ticket extends PanacheEntity {
+    public LocalDateTime startedAt;
+
+    @ManyToOne
+    public Person person;
+
+    public String phone;
+    public String addressMain;
+    public String addressDetail;
+
+    @OneToMany(
+            mappedBy = "ticket",
+            cascade = {
+                    CascadeType.MERGE,
+                    CascadeType.PERSIST
+            },
+            orphanRemoval = true
+    )
+    public List<TicketItem> items;
+
+    public Ticket() {}
+
+    @Transactional
+    public static Ticket createTicket(Person person, String addressMain, String addressDetail) {
+        var result = new Ticket();
+        result.person = person;
+        result.addressMain = addressMain;
+        result.addressDetail = addressDetail;
+        result.persist();
+        return result;
+    }
+
+    public void addItem(Pizza pizza, BigDecimal price, Integer quantity) {
+        TicketItem item = TicketItem.createTicketItem(this, pizza, price, quantity);
+        items.add(item);
+    }
+
+}
