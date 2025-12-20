@@ -1,5 +1,6 @@
 package br.maestro.pizza.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -12,6 +13,7 @@ import java.math.BigDecimal;
 public class TicketItem extends PanacheEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     public Ticket ticket;
 
     @ManyToOne

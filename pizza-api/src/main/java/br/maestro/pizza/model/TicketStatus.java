@@ -1,5 +1,6 @@
 package br.maestro.pizza.model;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import jakarta.persistence.EnumeratedValue;
 
 public enum TicketStatus {
@@ -8,12 +9,13 @@ public enum TicketStatus {
     DELETED("DELETADO");
 
     @EnumeratedValue
-    private final String ticketStatus;
+    final String ticketStatus;
 
     TicketStatus(String ticketStatus) {
         this.ticketStatus = ticketStatus;
     }
 
+    @JsonValue
     public String getTicketStatus() {
         return ticketStatus;
     }

@@ -71,7 +71,16 @@ public class TicketsResources {
         return ticket;
     }
 
+    @POST
+    @Path("/{id}/submit")
+    // curl -sL -X POST http://locahost:8080/api/tickets/1/submit | jq
     public Ticket submitTicket(Long id) {
-        return null;
+        Ticket ticket = readTicket(id);
+        if (!TicketStatus.OPEN.equals(ticket.ticketStatus)){
+            throw new BadRequestException("Ticket not open");
+        }
+        ticket.ticketStatus = TicketStatus.SUBMITTED;
+        ticket.persistAndFlush();
+        return ticket;
     }
 }
