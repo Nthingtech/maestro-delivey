@@ -9,14 +9,16 @@ public class Person extends PanacheEntity {
 
     public String name;
     public String email;
+    public String phone;
 
     public Person() {}
 
     @Transactional
-    public Person createPerson(String name, String email) {
+    public static Person createPerson(String name, String email, String phone) {
         var result = new Person();
         result.name = name;
         result.email = email;
+        result.phone = phone;
         result.persist();
         return result;
     }

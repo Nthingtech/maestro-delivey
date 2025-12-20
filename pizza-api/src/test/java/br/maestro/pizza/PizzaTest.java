@@ -1,8 +1,11 @@
 package br.maestro.pizza;
 
+import br.maestro.pizza.model.Category;
 import br.maestro.pizza.model.Location;
+import br.maestro.pizza.model.Person;
 import br.maestro.pizza.model.Pizza;
 import br.maestro.pizza.model.Store;
+import br.maestro.pizza.model.Ticket;
 import br.maestro.pizza.rs.PizzaResource;
 import io.quarkus.logging.Log;
 import io.quarkus.narayana.jta.QuarkusTransaction;
@@ -12,6 +15,7 @@ import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,17 +27,6 @@ public class PizzaTest {
 
     @Inject
     PizzaResource pizzas;
-
-    @BeforeAll
-    @Transactional
-    public static void beforeAll() {
-        QuarkusTransaction.requiringNew().run(() -> {
-            var store = new Store();
-            store.name = "Pizza Shack";
-            store.code = "__default__";
-            store.persist();
-        });
-    }
 
     /**
      * Initial pizza order happy flow:
@@ -57,8 +50,27 @@ public class PizzaTest {
     }
 
     @Test
-    public void testSanity() {
-        List<Pizza> ps = pizzas.getPizza();
-        assertFalse(ps.isEmpty());
+    public void testAddToTicket() {
+
+        // GIVEN
+        var store = Store.createStore("Pizza Shack", "__test__");
+
+        var trad = Category.createCategory(store, "Tradicional", "10.99");
+        var marg = Pizza.createPizza("Marguerita");
+        var mush = Pizza.createPizza("Mushrooms");
+        trad.addPizzas(marg, mush);
+        var julio = Person.createPerson("Julio", "julio@caravana.cloud", "+55 11 555555");
+
+        // WHEN
+        var ticket = Ticket.createTicket(julio, "Av. Mofarrej", "ap 455");
+        ticket.addItem(marg, trad.price, 2);
+        ticket.addItem(mush, trad.price, 1);
+        var ticketValue = ticket.getValue();
+
+        //THEN
+        var expectedValue = new BigDecimal("32.97");
+        assertEquals(expectedValue, ticketValue);
+
+
     }
 }

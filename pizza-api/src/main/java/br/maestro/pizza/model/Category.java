@@ -11,6 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.transaction.Transactional;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -45,6 +46,7 @@ public class Category extends PanacheEntity {
     public Category() {
     }
 
+    @Transactional
     public static Category createCategory(Store store, String name, String price) {
         var result = new Category();
         result.store = store;

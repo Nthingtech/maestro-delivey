@@ -34,5 +34,8 @@ public class TicketItem extends PanacheEntity {
         return result;
     }
 
+    public BigDecimal getValue() {
+        return price.multiply(BigDecimal.valueOf(quantity));
+    }
 
 }

@@ -16,15 +16,13 @@ public class SampleDataInit {
 
     @Transactional
     public void init(@Observes StartupEvent ev) {
-        if (LaunchMode.NORMAL.equals(mode))
+       if (LaunchMode.NORMAL.equals(mode))
             return;
-
-        var store = Store.createStore("Pizza Shack", "__default__");
+       var store = Store.createStore("Pizza Shack", "__default__");
 
        var trad = Category.createCategory(store, "Tradicional", "10.99");
        var marg = Pizza.createPizza("Marguerita");
        var mush = Pizza.createPizza("Mushrooms");
-
        trad.addPizzas(marg, mush);
 
        var premium = Category.createCategory(store, "Premium", "14.99");

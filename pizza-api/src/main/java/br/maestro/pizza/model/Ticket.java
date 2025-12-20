@@ -10,6 +10,7 @@ import jakarta.transaction.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,7 +32,7 @@ public class Ticket extends PanacheEntity {
             },
             orphanRemoval = true
     )
-    public List<TicketItem> items;
+    public List<TicketItem> items = new ArrayList<>();
 
     public Ticket() {}
 
@@ -48,6 +49,13 @@ public class Ticket extends PanacheEntity {
     public void addItem(Pizza pizza, BigDecimal price, Integer quantity) {
         TicketItem item = TicketItem.createTicketItem(this, pizza, price, quantity);
         items.add(item);
+    }
+
+    public BigDecimal getValue() {
+        var result = items.stream()
+                .map(TicketItem::getValue)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        return result;
     }
 
 }
