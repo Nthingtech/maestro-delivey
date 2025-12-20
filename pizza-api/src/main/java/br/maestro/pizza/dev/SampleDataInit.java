@@ -21,14 +21,14 @@ public class SampleDataInit {
        var store = Store.createStore("Pizza Shack", "__default__");
 
        var trad = Category.createCategory(store, "Tradicional", "10.99");
-       var marg = Pizza.createPizza("Marguerita");
-       var mush = Pizza.createPizza("Mushrooms");
+        var marg = Pizza.createPizza("marguerita especial", "queijo, orégano e tomate.");
+        var mush = Pizza.createPizza("Mushrooms", "cogumelos e requeijão cremoso");
        trad.addPizzas(marg, mush);
 
        var premium = Category.createCategory(store, "Premium", "14.99");
-       var cheeses = Pizza.createPizza("4 Cheeses");
-       var veggies = Pizza.createPizza("Vegetables");
-       var napoles = Pizza.createPizza("Napoletana");
+       var cheeses = Pizza.createPizza("4 Cheeses", "Parmesão, mussarela, gorgonzola e cheddar");
+       var veggies = Pizza.createPizza("Vegetables", "cogumelos, rúcula e abobrinha");
+       var napoles = Pizza.createPizza("Napolitana", "Tomate, queijo, azeite e Manjericão");
        premium.addPizzas(cheeses, veggies, napoles);
     }
 }

@@ -56,8 +56,8 @@ public class PizzaTest {
         var store = Store.createStore("Pizza Shack", "__test__");
 
         var trad = Category.createCategory(store, "Tradicional", "10.99");
-        var marg = Pizza.createPizza("Marguerita");
-        var mush = Pizza.createPizza("Mushrooms");
+        var marg = Pizza.createPizza("Marguerita", "queijo, orégano e tomate.");
+        var mush = Pizza.createPizza("Mushrooms", "cogumelos e requeijão cremoso");
         trad.addPizzas(marg, mush);
         var julio = Person.createPerson("Julio", "julio@caravana.cloud", "+55 11 555555");
 

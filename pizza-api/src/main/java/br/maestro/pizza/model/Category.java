@@ -68,7 +68,7 @@ public class Category extends PanacheEntity {
         return  result;
     }
 
-    public String getDisplayName() {
+    public String getName() {
         return Utils.toTitleCase(this.name);
     }
 

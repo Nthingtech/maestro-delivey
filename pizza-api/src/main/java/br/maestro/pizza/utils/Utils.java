@@ -12,12 +12,13 @@ public class Utils {
     }
 
     public static String toTitleCase(String text) {
-        if (text == null || text.isEmpty()) {
+        if (text == null || text.isBlank()) {
             return text;
         }
 
-        return Arrays.stream(text.split(" "))
-                .map(word -> word.substring(0, 1).toUpperCase() + word.substring(1))
+        return Arrays.stream(text.split("\\s+"))
+                .filter(word -> !word.isEmpty())
+                .map(word -> word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase())
                 .collect(Collectors.joining(" "));
     }
 }
