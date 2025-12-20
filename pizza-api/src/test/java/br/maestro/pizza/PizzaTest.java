@@ -62,7 +62,7 @@ public class PizzaTest {
         var julio = Person.createPerson("Julio", "julio@caravana.cloud", "+55 11 555555");
 
         // WHEN
-        var ticket = Ticket.createTicket(julio, "Av. Mofarrej", "ap 455");
+        var ticket = Ticket.createTicket(julio, "Av. Mofarrej", "ap 455", "+55 11 845669999");
         ticket.addItem(marg, trad.price, 2);
         ticket.addItem(mush, trad.price, 1);
         var ticketValue = ticket.getValue();
