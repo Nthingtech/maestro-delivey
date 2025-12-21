@@ -1,7 +1,10 @@
 package br.maestro.pizza.rs;
 
+import br.maestro.pizza.event.TicketSubmitted;
 import br.maestro.pizza.model.Ticket;
 import br.maestro.pizza.model.TicketStatus;
+import jakarta.enterprise.event.Event;
+import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.Consumes;
@@ -14,12 +17,15 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 @Path("/tickets")
 @Transactional
 public class TicketsResources {
 
+    @Inject
+    Event<TicketSubmitted> events;
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
@@ -81,6 +87,10 @@ public class TicketsResources {
         }
         ticket.ticketStatus = TicketStatus.SUBMITTED;
         ticket.persistAndFlush();
+        events.fireAsync(new TicketSubmitted(
+                ticket,
+                LocalDateTime.now()
+        ));
         return ticket;
     }
 }
