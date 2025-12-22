@@ -1,4 +1,4 @@
-package br.maestro.pizza;
+package br.maestro.pizza.rs;
 
 import br.maestro.pizza.model.Category;
 import br.maestro.pizza.model.Location;
@@ -6,7 +6,6 @@ import br.maestro.pizza.model.Person;
 import br.maestro.pizza.model.Pizza;
 import br.maestro.pizza.model.Store;
 import br.maestro.pizza.model.Ticket;
-import br.maestro.pizza.rs.PizzaResource;
 import io.quarkus.logging.Log;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
