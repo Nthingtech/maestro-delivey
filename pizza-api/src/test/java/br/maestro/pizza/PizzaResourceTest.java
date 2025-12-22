@@ -8,22 +8,18 @@ import br.maestro.pizza.model.Store;
 import br.maestro.pizza.model.Ticket;
 import br.maestro.pizza.rs.PizzaResource;
 import io.quarkus.logging.Log;
-import io.quarkus.narayana.jta.QuarkusTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @QuarkusTest
-public class PizzaTest {
+public class PizzaResourceTest {
 
     @Inject
     PizzaResource pizzas;
