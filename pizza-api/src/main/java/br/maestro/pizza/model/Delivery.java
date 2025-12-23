@@ -32,15 +32,15 @@ public class Delivery extends PanacheEntity {
     Ticket ticket;
 
     @ManyToOne
-    Store store;
+    public Store store;
 
     @ManyToOne
-    Courier courier;
+    public Courier courier;
 
     @Embedded
-    Location currentLocation;
+    public Location currentLocation;
 
-    Integer rating;
+    public Integer rating;
 
     public Delivery() {}
 

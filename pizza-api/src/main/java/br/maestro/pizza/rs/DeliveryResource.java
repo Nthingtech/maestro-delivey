@@ -52,7 +52,7 @@ public class DeliveryResource {
     }
 
     @POST
-    @Path("{deliveryId}")
+    @Path("{deliveryId}/updateLocation")
     @Produces(MediaType.APPLICATION_JSON)
     public Map<String, Object> updateLocation(@PathParam("deliveryId") Long deliveryId, Map<String, Object> params) {
 

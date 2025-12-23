@@ -18,7 +18,7 @@ public class TestaDataProducer {
 
     public Delivery delivery;
 
-    @Transactional
+
     public void init(@Observes StartupEvent ev) {
         Store store = Store.createStore("Testing Store", "__TEST__");
 
