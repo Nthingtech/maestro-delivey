@@ -1,7 +1,9 @@
 package br.maestro.pizza.rs.user;
 
 import io.quarkus.logging.Log;
+import io.quarkus.oidc.UserInfo;
 import io.quarkus.security.identity.SecurityIdentity;
+import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.persistence.ManyToOne;
@@ -18,16 +20,22 @@ public class WhoAmIResource {
     @Inject
     SecurityIdentity identity;
 
+    @Inject
+    UserInfo info;
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed("user")
+    @PermitAll
     public Map<String, String > getWhoAmI() {
-
-        var name = "anonymous";
-        if (!identity.isAnonymous()){
-            name = identity.getPrincipal().getName();
+        if (identity.isAnonymous()){
+            return Map.of("name", "anonymous");
         }
-        Map<String, String> result = Map.of("name", name);
+        var name = info.getName();
+        var email = info.getEmail();
+        var result = Map.of(
+                "name", name,
+                "email", email);
+        Log.info(result);
         return result;
     }
 }
