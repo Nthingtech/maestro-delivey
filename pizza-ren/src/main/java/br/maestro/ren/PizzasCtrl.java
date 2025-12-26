@@ -12,11 +12,12 @@ public class PizzasCtrl extends Controller {
 
     @CheckedTemplate
     static class Templates {
-        public static native TemplateInstance index();
+        public static native TemplateInstance index(String greeting);
     }
 
     @GET
-    public TemplateInstance index () {
-        return Templates.index();
+    @Path("")
+    public TemplateInstance index() {
+        return Templates.index("Templates!");
     }
 }
