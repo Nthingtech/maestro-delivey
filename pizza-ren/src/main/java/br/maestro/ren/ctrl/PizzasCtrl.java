@@ -1,11 +1,17 @@
-package br.maestro.ren;
+package br.maestro.ren.ctrl;
 
+import br.maestro.ren.AppContext;
+import br.maestro.ren.data.IndexData;
 import br.maestro.ren.data.SliderItem;
 import io.quarkiverse.renarde.Controller;
+import io.quarkus.logging.Log;
 import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateInstance;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
+import org.jboss.resteasy.reactive.RestForm;
 
 import java.util.List;
 
@@ -15,13 +21,13 @@ public class PizzasCtrl extends Controller {
 
     @CheckedTemplate
     static class Templates {
-        public static native TemplateInstance index(List<SliderItem> sliderItems);
+        public static native TemplateInstance index(AppContext appContext, IndexData data);
     }
 
     static List<SliderItem> sliderItems = List.of(
             new SliderItem(
                     "Deliciosa",
-                    "Pizzas",
+                    "Pizza",
                     """
                             Oferecemos uma variedade de pizzas feitas com
                             ingredientes frescos e de alta qualidade.
@@ -32,7 +38,7 @@ public class PizzasCtrl extends Controller {
             ),
             new SliderItem(
                     "Sensacional",
-                    "Calzones",
+                    "Calzone",
                     """
                             Crocante por fora, macio por dentro e recheado
                             com uma mistura deliciosa que conquista qualquer
@@ -70,9 +76,13 @@ public class PizzasCtrl extends Controller {
             )
     );
 
+    @Inject
+    AppContext appContext;
+
     @GET
     @Path("/")
     public TemplateInstance index() {
-        return Templates.index(sliderItems);
+        return Templates.index(appContext, new IndexData(sliderItems));
     }
+
 }
