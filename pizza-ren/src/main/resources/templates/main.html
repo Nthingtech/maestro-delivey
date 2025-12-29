@@ -30,6 +30,16 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
+    {#ifError "someError" }
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="display: block">
+            <strong>Erro!</strong> Há um problema com envio da mensagem. Verifique a seção Contato.
+        </div>
+    {/ifError}
+    {#if flash:flashMessage }
+    <div class="alert alert-primary alert-dismissible fade show" role="alert" style="display: block">
+        <strong>Aviso!</strong> {flash:flashMessage}
+    </div>
+    {/if}
   	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 		      <a class="navbar-brand" href="/"><span class="flaticon-pizza-1 mr-1"></span>{appContext.title}<br><small>{appContext.appConfig.getSlogan}</small></a>

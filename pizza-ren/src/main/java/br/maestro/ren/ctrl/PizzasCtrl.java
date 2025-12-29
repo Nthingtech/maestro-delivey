@@ -8,9 +8,11 @@ import io.quarkus.logging.Log;
 import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateInstance;
 import jakarta.inject.Inject;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
+import org.hibernate.validator.constraints.Length;
 import org.jboss.resteasy.reactive.RestForm;
 
 import java.util.List;
@@ -87,12 +89,26 @@ public class PizzasCtrl extends Controller {
 
     @POST
     public void doSendMessage(
-           @RestForm String firstName,
-           @RestForm String lastName,
-           @RestForm String message
+           @NotBlank @Length(min = 2, max = 25) @RestForm String firstName,
+           @NotBlank @Length(min = 2, max = 25) @RestForm String lastName,
+           @NotBlank @Length(min = 2, max = 25) @RestForm String message
     ) {
+        var profanity = message.contains("fuck");
+        if (profanity){
+            validation.addError("message", "Fala assim não!");
+        }
+
+        if(validation.hasErrors()) {
+            validation.addError("someError", "Falha ao enviar a Mensagem, verifique a seção Contato");
+        }
+        if (validationFailed()){
+
+            Log.infof("Validation failed for %s %s: \n %s", firstName, lastName, message);
+        }
+
         Log.infof("Message from %s %s: \n %s", firstName, lastName, message);
-       index();
+        flash("flashMessage", "Tudo Certo! Contato enviado.");
+        index();
     }
 
 }
