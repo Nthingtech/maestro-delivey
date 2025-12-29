@@ -85,4 +85,14 @@ public class PizzasCtrl extends Controller {
         return Templates.index(appContext, new IndexData(sliderItems));
     }
 
+    @POST
+    public void doSendMessage(
+           @RestForm String firstName,
+           @RestForm String lastName,
+           @RestForm String message
+    ) {
+        Log.infof("Message from %s %s: \n %s", firstName, lastName, message);
+       index();
+    }
+
 }

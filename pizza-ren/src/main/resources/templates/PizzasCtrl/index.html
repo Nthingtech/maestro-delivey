@@ -625,22 +625,22 @@
             </div>
             <div class="col-md-6 appointment ftco-animate">
                 <h3 class="mb-3">Contact Us</h3>
-                {#form class="appointment-form"}
+                {#form uri:PizzasCtrl.doSendMessage() class="appointment-form"}
                     <div class="d-md-flex">
                         {#field}
-                            <input type="text" class="form-control" placeholder="First Name">
+                            {#input-text name="firstName" placeholder="Nome" /}
                         {/field}
                     </div>
                     <div class="d-me-flex">
                         {#field}
-                            <input type="text" class="form-control" placeholder="Last Name">
+                            {#input-text name="lastName" placeholder="Sobrenome" /}
                         {/field}
                     </div>
                         {#field}
-                            <textarea name="" id="" cols="30" rows="3" class="form-control" placeholder="Message"></textarea>
+                            {#text-area name="message" placeholder="Mensagem" /}
                         {/field}
                         {#field}
-                            <input type="submit" value="Send" class="btn btn-primary py-3 px-4">
+                            <input type="submit" value="Enviar" class="btn btn-primary py-3 px-4">
                         {/field}
                 {/form}
             </div>
