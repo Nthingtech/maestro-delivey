@@ -3,6 +3,8 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="Quarkus" url="file://$PROJECT_DIR$/pizza-api" />
+    <file type="Quarkus" url="file://$PROJECT_DIR$/pizza-ren" />
+    <file type="Qute" url="file://$PROJECT_DIR$/pizza-ren" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
