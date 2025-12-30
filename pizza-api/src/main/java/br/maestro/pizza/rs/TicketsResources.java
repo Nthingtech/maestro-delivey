@@ -58,7 +58,7 @@ public class TicketsResources {
     }
 
 
-    @PUT
+    /*@PUT
     @Path("/{id}")
     // curl -s -X PUT -H "Content-Type: application/json" -d '{"pizzaId": 1, "price":"10.99", "quantity": "2"}' http://localhost:8080/api/tickets/1 | jq
     public Ticket addItem(Long id, TicketItemAdd itemAdd) {
@@ -75,7 +75,7 @@ public class TicketsResources {
         }
         ticket.addItem(itemAdd);
         return ticket;
-    }
+    } TODO */
 
     @POST
     @Path("/{id}/submit")

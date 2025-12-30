@@ -1,13 +1,11 @@
 package br.maestro.pizza.model;
 
-import br.maestro.pizza.rs.TicketItemAdd;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.transaction.Transactional;
@@ -76,9 +74,9 @@ public class Ticket extends PanacheEntity {
         return result;
     }
 
-    public void addItem(TicketItemAdd itemAdd){
+    /*public void addItem(TicketItemAdd itemAdd){
         Pizza pizza = Pizza.findById(itemAdd.pizzaId());
         addItem(pizza, itemAdd.price(), itemAdd.quantity());
-    }
+    } TODO */
 
 }

@@ -3,7 +3,9 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="Quarkus" url="file://$PROJECT_DIR$/pizza-api" />
+    <file type="Quarkus" url="file://$PROJECT_DIR$/pizza-core" />
     <file type="Quarkus" url="file://$PROJECT_DIR$/pizza-ren" />
+    <file type="Quarkus" url="file://$PROJECT_DIR$/pizza-vdn" />
     <file type="Qute" url="file://$PROJECT_DIR$/pizza-ren" />
   </component>
   <component name="MavenProjectsManager">
@@ -13,5 +15,5 @@
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" project-jdk-name="temurin-21 (2)" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" project-jdk-name="temurin-21 (3)" project-jdk-type="JavaSDK" />
 </project>

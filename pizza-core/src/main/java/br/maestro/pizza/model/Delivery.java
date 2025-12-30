@@ -1,14 +1,12 @@
 package br.maestro.pizza.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import io.quarkus.logging.Log;
 import io.quarkus.panache.common.Parameters;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToOne;
 import jakarta.transaction.Transactional;
 
 @Entity

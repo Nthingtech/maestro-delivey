@@ -19,6 +19,14 @@
             </ModuleState>
           </value>
         </entry>
+        <entry key="pizza-vdn">
+          <value>
+            <ModuleState>
+              <option name="hash" value="-775634960" />
+              <option name="version" value="1" />
+            </ModuleState>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
