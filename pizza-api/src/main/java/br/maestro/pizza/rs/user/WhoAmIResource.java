@@ -1,5 +1,6 @@
 package br.maestro.pizza.rs.user;
 
+import br.maestro.pizza.auth.UserDetails;
 import io.quarkus.logging.Log;
 import io.quarkus.oidc.UserInfo;
 import io.quarkus.security.identity.SecurityIdentity;
@@ -14,28 +15,14 @@ import jakarta.ws.rs.core.MediaType;
 
 import java.util.Map;
 
-@Path("/user/whoami")
+@Path("/whoami")
 public class WhoAmIResource {
 
-    @Inject
-    SecurityIdentity identity;
-
-    @Inject
-    UserInfo info;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @PermitAll
-    public Map<String, String > getWhoAmI() {
-        if (identity.isAnonymous()){
-            return Map.of("name", "anonymous");
-        }
-        var name = info.getName();
-        var email = info.getEmail();
-        var result = Map.of(
-                "name", name,
-                "email", email);
-        Log.info(result);
-        return result;
+    public UserDetails get() {
+        return new UserDetails();
     }
+
 }
